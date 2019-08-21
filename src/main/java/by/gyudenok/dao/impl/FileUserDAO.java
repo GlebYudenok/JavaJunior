@@ -17,7 +17,9 @@ import java.io.File;
 
 public class FileUserDAO implements DAO<User> {
 
-    private static final String filePath = "C:\\Users\\DELL\\Desktop\\JavaJunior\\src\\main\\resources\\users";
+    //fix later
+    private static final String filePath = "src\\main\\resources\\users";
+
     private File file = new File(filePath);
     private FileWriter fr = null;
 
@@ -76,13 +78,13 @@ public class FileUserDAO implements DAO<User> {
     }
 
     @Override
-    public User read(User user) {
-        return null;
-    }
-
-    @Override
-    public User readAll() {
-        return null;
+    public List<User> readAll() throws IOException {
+        int i = Files.readAllLines(Paths.get(filePath)).size();
+        List<User> userList = new ArrayList<>();
+        for(int j = 0; j < i; j++){
+            userList.add(read(j));
+        }
+        return userList;
     }
 
     @Override
