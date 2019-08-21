@@ -3,11 +3,16 @@ package by.gyudenok.domain;
 import java.util.List;
 
 public class User {
+    private int userId;
     private String name;
     private String surname;
     private String email;
     private List<String> phones;
     private List<Role> roles;
+
+    public User(){
+
+    }
 
     public User(String name, String surname, String email,
                 List<String> phones, List<Role> roles) {
@@ -16,6 +21,7 @@ public class User {
         this.email = email;
         this.phones = phones;
         this.roles = roles;
+        userId = hashCode();
     }
 
     public String getName() {
@@ -54,6 +60,14 @@ public class User {
         return roles;
     }
 
+    public void setUserId(int userId){
+        this.userId = userId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
@@ -86,7 +100,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id='" + userId + '\'' +
+                ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 ", phones=" + phones +
