@@ -92,19 +92,7 @@ public class FileUserDAO implements DAO<User> {
         List<String> raws = new LinkedList<>();
         raws = Files.readAllLines(Paths.get(filePath));
 
-        String s = user.getUserId() + " " +
-                user.getName() + " " + user.getSurname() +
-                " " + user.getEmail() + " ";
-
-        for(int i = 0; i < user.getPhones().size(); i++){
-            s += user.getPhones().get(i) + " ";
-        }
-
-        for(int i = 0; i < user.getRoles().size(); i++){
-            s += user.getRoles().get(i) + " ";
-        }
-        s.trim();
-        raws.set(id, s);
+        raws.set(id, formatForFile(user));
 
         fr = new FileWriter(file);
         raws.forEach(str -> {
@@ -133,7 +121,40 @@ public class FileUserDAO implements DAO<User> {
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(int id) throws IOException {
+        List<String> stringList = Files.readAllLines(Paths.get(filePath));
+        for(int i = 0; i < stringList.size(); i++){
+            List<String> l = Arrays.asList(
+                    stringList.get(i).split(" "));
+            if(Integer.valueOf(l.get(0)) == id){
+                stringList.remove(i);
+            }
+        }
 
+        fr = new FileWriter(file);
+        stringList.forEach(str -> {
+            try {
+                fr.write(str + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        fr.close();
+    }
+
+    private String formatForFile(User user){
+        String s = user.getUserId() + " " +
+                user.getName() + " " + user.getSurname() +
+                " " + user.getEmail() + " ";
+
+        for(int i = 0; i < user.getPhones().size(); i++){
+            s += user.getPhones().get(i) + " ";
+        }
+
+        for(int i = 0; i < user.getRoles().size(); i++){
+            s += user.getRoles().get(i) + " ";
+        }
+        s.trim();
+        return s;
     }
 }

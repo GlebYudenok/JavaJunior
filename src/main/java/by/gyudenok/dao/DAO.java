@@ -11,5 +11,5 @@ public interface DAO <T> {
     List<T> readAll() throws IOException;
     void update(T user, int id) throws IOException;
     void deleteByIndex(int index) throws IOException;
-    void deleteById(int id);
+    void deleteById(int id) throws IOException;
 }
