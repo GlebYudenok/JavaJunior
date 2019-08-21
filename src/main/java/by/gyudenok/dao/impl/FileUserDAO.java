@@ -11,6 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.io.File;
 
@@ -86,6 +87,32 @@ public class FileUserDAO implements DAO<User> {
 
     @Override
     public void update(User user, int id) throws IOException {
+        List<String> raws = new LinkedList<>();
+        raws = Files.readAllLines(Paths.get(filePath));
+
+        String s = user.getUserId() + " " +
+                user.getName() + " " + user.getSurname() +
+                " " + user.getEmail() + " ";
+
+        for(int i = 0; i < user.getPhones().size(); i++){
+            s += user.getPhones().get(i) + " ";
+        }
+
+        for(int i = 0; i < user.getRoles().size(); i++){
+            s += user.getRoles().get(i) + " ";
+        }
+        s.trim();
+        raws.set(id, s);
+
+        fr = new FileWriter(file);
+        raws.forEach(str -> {
+            try {
+                fr.write(str + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        fr.close();
     }
 
     @Override
