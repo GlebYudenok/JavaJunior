@@ -118,12 +118,22 @@ public class FileUserDAO implements DAO<User> {
     }
 
     @Override
-    public void delete(int id) {
-
+    public void deleteByIndex(int index) throws IOException {
+        List<String> raws = Files.readAllLines(Paths.get(filePath));
+        raws.remove(index);
+        fr = new FileWriter(file);
+        raws.forEach(str -> {
+            try {
+                fr.write(str + "\n");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        fr.close();
     }
 
     @Override
-    public void delete(User user) {
+    public void deleteById(int id) {
 
     }
 }
