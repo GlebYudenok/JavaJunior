@@ -3,22 +3,24 @@ package by.gyudenok.dao.impl;
 import by.gyudenok.dao.DAO;
 import by.gyudenok.domain.Role;
 import by.gyudenok.domain.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.io.File;
 
 public class FileUserDAO implements DAO<User> {
 
     //fix later
     private static final String filePath = "src\\main\\resources\\users";
+    private static final Logger LOGGER = LogManager.getLogger(FileUserDAO.class);
 
     private File file = new File(filePath);
     private FileWriter fr = null;
@@ -48,6 +50,7 @@ public class FileUserDAO implements DAO<User> {
                 e.printStackTrace();
             }
         }
+        LOGGER.info("User was created successfully!");
     }
 
     @Override
