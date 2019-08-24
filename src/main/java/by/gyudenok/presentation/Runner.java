@@ -1,26 +1,12 @@
 package by.gyudenok.presentation;
 
-import by.gyudenok.controller.Command;
 import by.gyudenok.controller.CommandName;
-import by.gyudenok.controller.CommandProvider;
 import by.gyudenok.controller.Controller;
-import by.gyudenok.controller.impl.UserCreateCommand;
 import by.gyudenok.controller.scanner.DataEntry;
-import by.gyudenok.dao.DAO;
-import by.gyudenok.dao.factory.DAOFactory;
-import by.gyudenok.dao.impl.FileUserDAO;
-import by.gyudenok.domain.Role;
-import by.gyudenok.domain.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 public class Runner {
 

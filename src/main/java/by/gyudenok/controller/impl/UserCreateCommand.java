@@ -1,7 +1,6 @@
 package by.gyudenok.controller.impl;
 
 import by.gyudenok.controller.Command;
-import by.gyudenok.controller.CommandName;
 import by.gyudenok.controller.scanner.DataEntry;
 import by.gyudenok.dao.DAO;
 import by.gyudenok.dao.factory.DAOFactory;

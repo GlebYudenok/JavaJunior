@@ -1,7 +1,6 @@
 package by.gyudenok.controller.impl;
 
 import by.gyudenok.controller.Command;
-import by.gyudenok.controller.CommandName;
 
 public class UserReadAllCommand implements Command {
 

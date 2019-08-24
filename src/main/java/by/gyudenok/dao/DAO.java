@@ -1,7 +1,5 @@
 package by.gyudenok.dao;
 
-import by.gyudenok.domain.User;
-
 import java.io.IOException;
 import java.util.List;
 
