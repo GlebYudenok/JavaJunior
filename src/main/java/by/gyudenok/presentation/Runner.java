@@ -3,6 +3,7 @@ package by.gyudenok.presentation;
 import by.gyudenok.controller.CommandName;
 import by.gyudenok.controller.Controller;
 import by.gyudenok.controller.scanner.DataEntry;
+import by.gyudenok.exception.DAOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,7 +13,7 @@ public class Runner {
 
     private static final Logger LOGGER = LogManager.getLogger(Runner.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Controller controller = new Controller();
 
@@ -28,27 +29,51 @@ public class Runner {
             switch (c){
                 case 1:
                     LOGGER.info("User creation...");
-                    LOGGER.info(controller.executeTask(CommandName.CREATE.toString()));
+                    try {
+                        LOGGER.info(controller.executeTask(CommandName.CREATE.toString()));
+                    } catch (DAOException | IOException e) {
+                        LOGGER.error("The file does not exist or it contains incorrect data!");
+                    }
                     break;
                 case 2:
                     LOGGER.info("User editing by index...");
-                    LOGGER.info(controller.executeTask(CommandName.UPDATE.toString()));
+                    try {
+                        LOGGER.info(controller.executeTask(CommandName.UPDATE.toString()));
+                    } catch (DAOException | IOException e) {
+                        LOGGER.error("The file does not exist or it contains incorrect data!");
+                    }
                     break;
                 case 3:
                     LOGGER.info("Deleton by id...");
-                    LOGGER.info(controller.executeTask(CommandName.DELETE_BY_ID.toString()));
+                    try {
+                        LOGGER.info(controller.executeTask(CommandName.DELETE_BY_ID.toString()));
+                    } catch (DAOException | IOException e) {
+                        LOGGER.error("The file does not exist or it contains incorrect data!");
+                    }
                     break;
                 case 4:
                     LOGGER.info("Deletion by index...");
-                    LOGGER.info(controller.executeTask(CommandName.DELETE_BY_INDEX.toString()));
+                    try {
+                        LOGGER.info(controller.executeTask(CommandName.DELETE_BY_INDEX.toString()));
+                    } catch (DAOException | IOException e) {
+                        LOGGER.error("The file does not exist or it contains incorrect data!");
+                    }
                     break;
                 case 5:
                     LOGGER.info("Get user by index...");
-                    LOGGER.info(controller.executeTask(CommandName.READ.toString()));
+                    try {
+                        LOGGER.info(controller.executeTask(CommandName.READ.toString()));
+                    } catch (DAOException | IOException e) {
+                        LOGGER.error("The file does not exist or it contains incorrect data!");
+                    }
                     break;
                 case 6:
                     LOGGER.info("Get all users...");
-                    LOGGER.info(controller.executeTask(CommandName.READ_ALL.toString()));
+                    try {
+                        LOGGER.info(controller.executeTask(CommandName.READ_ALL.toString()));
+                    } catch (DAOException | IOException e) {
+                        LOGGER.error("The file does not exist or it contains incorrect data!");
+                    }
                     break;
                 case 0:
                     LOGGER.info("Exiting...");
