@@ -6,8 +6,7 @@ public enum CommandName {
     UPDATE,
     READ_ALL,
     DELETE_BY_ID,
-    DELETE_BY_INDEX,
-    EXIT;
+    DELETE_BY_INDEX;
 
     public static CommandName getById(final int id){
         return CommandName.values()[id];
