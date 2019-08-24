@@ -106,6 +106,7 @@ public class FileUserDAO implements DAO<User> {
             }
         });
         fr.close();
+        LOGGER.info("User was update successfully!");
     }
 
     @Override
