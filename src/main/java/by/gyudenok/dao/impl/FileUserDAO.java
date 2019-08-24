@@ -60,9 +60,9 @@ public class FileUserDAO implements DAO<User> {
         List<String> sss = Arrays.asList(s.split(" "));
         User user = new User();
         user.setUserId(Integer.valueOf(sss.get(0)));
-        user.setSurname(sss.get(1));
-        user.setEmail(sss.get(2));
-        user.setName(sss.get(3));
+        user.setName(sss.get(1));
+        user.setSurname(sss.get(2));
+        user.setEmail(sss.get(3));
         int i = 4;
         ArrayList<String> arr = new ArrayList();
         while (sss.get(i).startsWith("375")){
@@ -77,6 +77,7 @@ public class FileUserDAO implements DAO<User> {
             i++;
         }
         user.setRoles(roles);
+        LOGGER.info("User was received successfully!");
         return user;
     }
 
