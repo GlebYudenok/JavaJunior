@@ -31,7 +31,8 @@ public class Runner {
                     LOGGER.info(controller.executeTask(CommandName.CREATE.toString()));
                     break;
                 case 2:
-                    LOGGER.info("EDITING User");
+                    LOGGER.info("User editing by index...");
+                    LOGGER.info(controller.executeTask(CommandName.UPDATE.toString()));
                     break;
                 case 3:
                     LOGGER.info("DElete by id");
