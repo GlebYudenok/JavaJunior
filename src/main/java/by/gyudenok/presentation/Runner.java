@@ -35,16 +35,20 @@ public class Runner {
                     LOGGER.info(controller.executeTask(CommandName.UPDATE.toString()));
                     break;
                 case 3:
-                    LOGGER.info("DElete by id");
+                    LOGGER.info("Deleton by id...");
+                    LOGGER.info(controller.executeTask(CommandName.DELETE_BY_ID.toString()));
                     break;
                 case 4:
-                    LOGGER.info("DElete by index");
+                    LOGGER.info("Deletion by index...");
+                    LOGGER.info(controller.executeTask(CommandName.DELETE_BY_INDEX.toString()));
                     break;
                 case 5:
-                    LOGGER.info("get by index");
+                    LOGGER.info("Get user by index...");
+                    LOGGER.info(controller.executeTask(CommandName.READ.toString()));
                     break;
                 case 6:
-                    LOGGER.info("get all users");
+                    LOGGER.info("Get all users...");
+                    LOGGER.info(controller.executeTask(CommandName.READ_ALL.toString()));
                     break;
                 case 0:
                     LOGGER.info("Exiting...");
