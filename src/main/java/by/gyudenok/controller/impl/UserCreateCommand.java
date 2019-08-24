@@ -23,7 +23,20 @@ public class UserCreateCommand implements Command {
     public String executeTask(String request) throws IOException {
         User user = fillFields();
         userDAO.create(user);
-        return user.toString();
+        String response = new String("User: \n");
+        response += "id: " + user.getUserId()
+        + '\n' + "Name: " + user.getName()
+        + '\n' + "Surname: " + user.getSurname()
+        + '\n' + "Email: " + user.getEmail() + '\n' + "Phones: \n";
+        for(int i = 0; i < user.getPhones().size(); i++){
+            response += '\t' + user.getPhones().get(i) + '\n';
+        }
+        response += "Roles: \n";
+        for(int i = 0; i < user.getRoles().size(); i++){
+            response += '\t' + user.getRoles().get(i).toString() + '\n';
+        }
+
+        return response + '\n';
     }
 
     private User fillFields(){
@@ -40,13 +53,13 @@ public class UserCreateCommand implements Command {
         LOGGER.info("How much phones number you have?");
         int c = DataEntry.enterInt();//Тут должна быть валидация
         for (int i = 0; i < c; i++){
-            LOGGER.info("Enter ur " + i + " number: ");
+            LOGGER.info("Enter ur " + i + 1 + " number: ");
             phones.add(DataEntry.enterString());//Тут тоже валидация
         }
         LOGGER.info("How much roles you have?");
         c = DataEntry.enterInt();//Валидация
         for(int i = 0; i < c; i++){
-            LOGGER.info("Enter ur " + i + " role(ADMIN, USER, MANAGER): ");
+            LOGGER.info("Enter ur " + i + 1 + " role(ADMIN, USER, MANAGER): ");
             roles.add(Role.valueOf(DataEntry.enterString()));//Валидация
         }
 
