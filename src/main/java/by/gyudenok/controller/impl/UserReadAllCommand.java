@@ -7,6 +7,7 @@ import by.gyudenok.controller.scanner.impl.UserListDataFormatter;
 import by.gyudenok.dao.DAO;
 import by.gyudenok.dao.factory.DAOFactory;
 import by.gyudenok.domain.User;
+import by.gyudenok.exception.DAOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,8 +23,13 @@ public class UserReadAllCommand implements Command {
     private final static Logger LOGGER = LogManager.getLogger(UserReadCommand.class);
 
     @Override
-    public String executeTask(String request) throws IOException {
-        List<User> userList = userDAO.readAll();
+    public String executeTask(String request) throws IOException, DAOException {
+        List<User> userList = null;
+        try {
+            userList = userDAO.readAll();
+        } catch (DAOException e) {
+            throw new DAOException();
+        }
         DataFormatter<List<User>> formatter = new UserListDataFormatter();
         String response = formatter.formatUser(userList);
         return response;

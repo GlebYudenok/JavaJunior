@@ -3,6 +3,7 @@ package by.gyudenok.dao.impl;
 import by.gyudenok.dao.DAO;
 import by.gyudenok.domain.Role;
 import by.gyudenok.domain.User;
+import by.gyudenok.exception.DAOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,7 +55,7 @@ public class FileUserDAO implements DAO<User> {
     }
 
     @Override
-    public User read(int id) throws IOException {
+    public User read(int id) throws IOException, DAOException {
         String s = Files.readAllLines(Paths.get(filePath)).get(id);
         s = s.trim();
         List<String> sss = Arrays.asList(s.split(" "));
@@ -73,7 +74,11 @@ public class FileUserDAO implements DAO<User> {
 
         ArrayList<Role> roles = new ArrayList<>();
         while (i < sss.size()){
-            roles.add(Role.valueOf(sss.get(i)));
+            try {
+                roles.add(Role.valueOf(sss.get(i)));
+            }catch (IllegalArgumentException e){
+                throw new DAOException();
+            }
             i++;
         }
         user.setRoles(roles);
@@ -82,11 +87,15 @@ public class FileUserDAO implements DAO<User> {
     }
 
     @Override
-    public List<User> readAll() throws IOException {
+    public List<User> readAll() throws IOException, DAOException {
         int i = Files.readAllLines(Paths.get(filePath)).size();
         List<User> userList = new ArrayList<>();
         for(int j = 0; j < i; j++){
-            userList.add(read(j));
+            try {
+                userList.add(read(j));
+            } catch (DAOException e) {
+                throw new DAOException();
+            }
         }
         return userList;
     }
@@ -103,11 +112,10 @@ public class FileUserDAO implements DAO<User> {
             try {
                 fr.write(str + "\n");
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error("The file does not exist or it contains incorrect data!");
             }
         });
         fr.close();
-        LOGGER.info("User was update successfully!");
     }
 
     @Override
@@ -119,7 +127,7 @@ public class FileUserDAO implements DAO<User> {
             try {
                 fr.write(str + "\n");
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error("The file does not exist or it contains incorrect data!");
             }
         });
         fr.close();
@@ -141,7 +149,7 @@ public class FileUserDAO implements DAO<User> {
             try {
                 fr.write(str + "\n");
             } catch (IOException e) {
-                e.printStackTrace();
+                LOGGER.error("The file does not exist or it contains incorrect data!");
             }
         });
         fr.close();

@@ -1,12 +1,14 @@
 package by.gyudenok.controller;
 
+import by.gyudenok.exception.DAOException;
+
 import java.io.IOException;
 
 public class Controller {
 
     private final CommandProvider provider = new CommandProvider();
 
-    public String executeTask(String request) throws IOException {
+    public String executeTask(String request) throws IOException, DAOException {
         String commandName;
         Command executionCommand;
 
