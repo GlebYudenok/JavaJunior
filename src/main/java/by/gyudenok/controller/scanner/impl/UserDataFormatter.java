@@ -7,18 +7,21 @@ public class UserDataFormatter implements DataFormatter<User> {
 
     @Override
     public String formatUser(User user){
-        String formattedString = new String("User: \n");
-        formattedString += "id: " + user.getUserId()
-                + '\n' + "Name: " + user.getName()
-                + '\n' + "Surname: " + user.getSurname()
-                + '\n' + "Email: " + user.getEmail() + '\n' + "Phones: \n";
+
+        String formattedString = new String("+==============================+" +
+                "\t\n   User: \n");
+        formattedString += "\t|\tid: " + user.getUserId()
+                + '\n' + "\t|\tName: " + user.getName()
+                + '\n' + "\t|\tSurname: " + user.getSurname()
+                + '\n' + "\t|\tEmail: " + user.getEmail() + '\n'
+                + "\t|\tPhones: \n";
         for(int i = 0; i < user.getPhones().size(); i++){
-            formattedString += '\t' + user.getPhones().get(i) + '\n';
+            formattedString += "\t|\t\t" + user.getPhones().get(i) + '\n';
         }
-        formattedString += "Roles: \n";
+        formattedString += "\t|\tRoles: \n";
         for(int i = 0; i < user.getRoles().size(); i++){
-            formattedString += '\t' + user.getRoles().get(i).toString() + '\n';
+            formattedString += "\t|\t\t" + user.getRoles().get(i).toString() + '\n';
         }
-        return formattedString + '\n';
+        return formattedString;
     }
 }

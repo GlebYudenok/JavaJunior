@@ -10,10 +10,12 @@ public class UserListDataFormatter implements DataFormatter<List<User>> {
     @Override
     public String formatUser(List<User> userList) {
         DataFormatter<User> userFormatter = new UserDataFormatter();
-        String response = new String("Users: \n");
+        String response = new String("+=============================" +
+                "=================+\nUsers: \n");
         for(User user : userList){
             response += userFormatter.formatUser(user);
         }
+        response += "+============================================+";
         return response;
     }
 }
