@@ -56,6 +56,13 @@ public class FileUserDAO implements DAO<User> {
 
     @Override
     public User read(int id) throws IOException, DAOException {
+        int size = Files.readAllLines(Paths.get(filePath)).size();
+        if (id > size) {
+            throw new IllegalArgumentException();
+        } else if (size < 0) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+
         String s = Files.readAllLines(Paths.get(filePath)).get(id);
         s = s.trim();
         List<String> sss = Arrays.asList(s.split(" "));
