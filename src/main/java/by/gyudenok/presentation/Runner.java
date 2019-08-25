@@ -31,27 +31,27 @@ public class Runner {
                 switch (c) {
                     case 1:
                         LOGGER.info("User creation...");
-                        LOGGER.info(controller.executeTask(CommandName.CREATE.toString()));
+                        LOGGER.info(controller.executeTask(CommandName.CREATE));
                         break;
                     case 2:
                         LOGGER.info("User editing by index...");
-                        LOGGER.info(controller.executeTask(CommandName.UPDATE.toString()));
+                        LOGGER.info(controller.executeTask(CommandName.UPDATE));
                         break;
                     case 3:
                         LOGGER.info("Deleton by id...");
-                        LOGGER.info(controller.executeTask(CommandName.DELETE_BY_ID.toString()));
+                        LOGGER.info(controller.executeTask(CommandName.DELETE_BY_ID));
                         break;
                     case 4:
                         LOGGER.info("Deletion by index...");
-                        LOGGER.info(controller.executeTask(CommandName.DELETE_BY_INDEX.toString()));
+                        LOGGER.info(controller.executeTask(CommandName.DELETE_BY_INDEX));
                         break;
                     case 5:
                         LOGGER.info("Get user by index...");
-                        LOGGER.info(controller.executeTask(CommandName.READ.toString()));
+                        LOGGER.info(controller.executeTask(CommandName.READ));
                         break;
                     case 6:
                         LOGGER.info("Get all users...");
-                        LOGGER.info(controller.executeTask(CommandName.READ_ALL.toString()));
+                        LOGGER.info(controller.executeTask(CommandName.READ_ALL));
                         break;
                     case 0:
                         LOGGER.info("Exiting...");

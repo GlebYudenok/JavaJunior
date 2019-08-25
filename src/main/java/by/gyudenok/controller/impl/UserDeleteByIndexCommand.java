@@ -1,6 +1,7 @@
 package by.gyudenok.controller.impl;
 
 import by.gyudenok.controller.Command;
+import by.gyudenok.controller.CommandName;
 import by.gyudenok.controller.scanner.DataEntry;
 import by.gyudenok.controller.validator.UserIndexValidator;
 import by.gyudenok.dao.DAO;
@@ -21,7 +22,7 @@ public class UserDeleteByIndexCommand implements Command {
     private final UserIndexValidator validator = new UserIndexValidator();
 
     @Override
-    public String executeTask(String request) throws IOException, DAOException {
+    public String executeTask(CommandName request) throws IOException, DAOException {
         int index;
 
         while (true) {

@@ -17,16 +17,9 @@ public final class CommandProvider {
         repository.put(CommandName.DELETE_BY_INDEX, new UserDeleteByIndexCommand());
     }
 
-    public Command getCommand(String name){
-        CommandName commandName = null;
+    public Command getCommand(CommandName name){
         Command command = null;
-
-        try {
-            commandName = CommandName.valueOf(name.toUpperCase());
-            command = repository.get(commandName);
-        }catch (IllegalArgumentException | NullPointerException e){
-
-        }
+        command = repository.get(name);
         return command;
     }
 }

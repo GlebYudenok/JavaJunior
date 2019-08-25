@@ -1,6 +1,7 @@
 package by.gyudenok.controller.impl;
 
 import by.gyudenok.controller.Command;
+import by.gyudenok.controller.CommandName;
 import by.gyudenok.controller.scanner.DataEntry;
 import by.gyudenok.controller.scanner.DataFormatter;
 import by.gyudenok.controller.scanner.impl.UserDataFormatter;
@@ -19,7 +20,7 @@ public class UserDeleteByIdCommand implements Command {
     private final static Logger LOGGER = LogManager.getLogger(UserReadCommand.class);
 
     @Override
-    public String executeTask(String request) throws IOException {
+    public String executeTask(CommandName request) throws IOException {
         LOGGER.info("Enter index of user which need delete: ");
         int id = DataEntry.enterInt();//validation
         userDAO.deleteById(id);

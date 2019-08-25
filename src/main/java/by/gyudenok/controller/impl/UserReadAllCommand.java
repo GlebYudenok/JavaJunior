@@ -1,6 +1,7 @@
 package by.gyudenok.controller.impl;
 
 import by.gyudenok.controller.Command;
+import by.gyudenok.controller.CommandName;
 import by.gyudenok.controller.scanner.DataEntry;
 import by.gyudenok.controller.scanner.DataFormatter;
 import by.gyudenok.controller.scanner.impl.UserListDataFormatter;
@@ -23,7 +24,7 @@ public class UserReadAllCommand implements Command {
     private final static Logger LOGGER = LogManager.getLogger(UserReadCommand.class);
 
     @Override
-    public String executeTask(String request) throws IOException, DAOException {
+    public String executeTask(CommandName request) throws IOException, DAOException {
         List<User> userList = null;
         try {
             userList = userDAO.readAll();

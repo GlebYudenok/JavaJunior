@@ -5,5 +5,5 @@ import by.gyudenok.exception.DAOException;
 import java.io.IOException;
 
 public interface Command {
-    String executeTask(String request) throws IOException, DAOException;
+    String executeTask(CommandName request) throws IOException, DAOException;
 }

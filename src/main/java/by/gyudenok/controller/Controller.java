@@ -9,12 +9,10 @@ public class Controller {
 
     private final CommandProvider provider = new CommandProvider();
 
-    public String executeTask(String request) throws IOException, DAOException {
-        String commandName;
+    public String executeTask(CommandName request) throws IOException, DAOException {
         Command executionCommand;
 
-        commandName = request;
-        executionCommand = provider.getCommand(commandName);
+        executionCommand = provider.getCommand(request);
         String response = executionCommand.executeTask(request);
         return response;
     }

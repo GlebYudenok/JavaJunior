@@ -1,6 +1,7 @@
 package by.gyudenok.controller.impl;
 
 import by.gyudenok.controller.Command;
+import by.gyudenok.controller.CommandName;
 import by.gyudenok.controller.Filler;
 import by.gyudenok.controller.scanner.DataEntry;
 import by.gyudenok.controller.scanner.impl.UserDataFormatter;
@@ -23,7 +24,7 @@ public class UserUpdateCommand extends Filler implements Command {
     private final UserIndexValidator validator = new UserIndexValidator();
 
     @Override
-    public String executeTask(String request) throws IOException, DAOException {
+    public String executeTask(CommandName request) throws IOException, DAOException {
         int index = choose();
         User user = fillFields();
         userDAO.update(user, index);

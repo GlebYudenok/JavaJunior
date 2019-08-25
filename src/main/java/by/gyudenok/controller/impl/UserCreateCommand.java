@@ -1,6 +1,7 @@
 package by.gyudenok.controller.impl;
 
 import by.gyudenok.controller.Command;
+import by.gyudenok.controller.CommandName;
 import by.gyudenok.controller.Filler;
 import by.gyudenok.controller.scanner.impl.UserDataFormatter;
 import by.gyudenok.dao.DAO;
@@ -18,7 +19,7 @@ public class UserCreateCommand extends Filler implements Command {
     private static final Logger LOGGER = LogManager.getLogger(UserCreateCommand.class);
 
     @Override
-    public String executeTask(String request) throws IOException {
+    public String executeTask(CommandName request) throws IOException {
         User user = fillFields();
         userDAO.create(user);
         UserDataFormatter dataFormatter = new UserDataFormatter();
