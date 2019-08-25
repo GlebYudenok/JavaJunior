@@ -26,61 +26,42 @@ public class Runner {
             LOGGER.info("6. Get all users");
             LOGGER.info("0. Exit");
             int c = DataEntry.enterInt();
-            switch (c){
-                case 1:
-                    LOGGER.info("User creation...");
-                    try {
+
+            try {
+                switch (c) {
+                    case 1:
+                        LOGGER.info("User creation...");
                         LOGGER.info(controller.executeTask(CommandName.CREATE.toString()));
-                    } catch (DAOException | IOException e) {
-                        LOGGER.error("The file does not exist or it contains incorrect data!");
-                    }
-                    break;
-                case 2:
-                    LOGGER.info("User editing by index...");
-                    try {
+                        break;
+                    case 2:
+                        LOGGER.info("User editing by index...");
                         LOGGER.info(controller.executeTask(CommandName.UPDATE.toString()));
-                    } catch (DAOException | IOException e) {
-                        LOGGER.error("The file does not exist or it contains incorrect data!");
-                    }
-                    break;
-                case 3:
-                    LOGGER.info("Deleton by id...");
-                    try {
+                        break;
+                    case 3:
+                        LOGGER.info("Deleton by id...");
                         LOGGER.info(controller.executeTask(CommandName.DELETE_BY_ID.toString()));
-                    } catch (DAOException | IOException e) {
-                        LOGGER.error("The file does not exist or it contains incorrect data!");
-                    }
-                    break;
-                case 4:
-                    LOGGER.info("Deletion by index...");
-                    try {
+                        break;
+                    case 4:
+                        LOGGER.info("Deletion by index...");
                         LOGGER.info(controller.executeTask(CommandName.DELETE_BY_INDEX.toString()));
-                    } catch (DAOException | IOException e) {
-                        LOGGER.error("The file does not exist or it contains incorrect data!");
-                    }
-                    break;
-                case 5:
-                    LOGGER.info("Get user by index...");
-                    try {
+                        break;
+                    case 5:
+                        LOGGER.info("Get user by index...");
                         LOGGER.info(controller.executeTask(CommandName.READ.toString()));
-                    } catch (DAOException | IOException e) {
-                        LOGGER.error("The file does not exist or it contains incorrect data!");
-                    }
-                    break;
-                case 6:
-                    LOGGER.info("Get all users...");
-                    try {
+                        break;
+                    case 6:
+                        LOGGER.info("Get all users...");
                         LOGGER.info(controller.executeTask(CommandName.READ_ALL.toString()));
-                    } catch (DAOException | IOException e) {
-                        LOGGER.error("The file does not exist or it contains incorrect data!");
-                    }
-                    break;
-                case 0:
-                    LOGGER.info("Exiting...");
-                    System.exit(0);
-                    break;
+                        break;
+                    case 0:
+                        LOGGER.info("Exiting...");
+                        System.exit(0);
+                        break;
                     default:
                         LOGGER.error("Wrong command. Try again!");
+                }
+            }catch (DAOException | IOException e){
+                LOGGER.error("The file does not exist or it contains incorrect data!");
             }
         }
     }
