@@ -8,6 +8,7 @@ import by.gyudenok.controller.scanner.impl.UserDataFormatter;
 import by.gyudenok.dao.DAO;
 import by.gyudenok.dao.factory.DAOFactory;
 import by.gyudenok.domain.User;
+import by.gyudenok.exception.ValidatorExcepiton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,8 +23,12 @@ public class UserDeleteByIdCommand implements Command {
     @Override
     public String executeTask(CommandName request) throws IOException {
         LOGGER.info("Enter index of user which need delete: ");
-        int id = DataEntry.enterInt();//validation
-        userDAO.deleteById(id);
+        int id = DataEntry.enterInt();
+        try {
+            userDAO.deleteById(id);
+        } catch (ValidatorExcepiton e){
+            return "User with this id not found";
+        }
         return "User with " + id + " id was deleted successfully!";
     }
 }

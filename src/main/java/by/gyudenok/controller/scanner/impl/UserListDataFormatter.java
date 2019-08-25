@@ -12,9 +12,11 @@ public class UserListDataFormatter implements DataFormatter<List<User>> {
         DataFormatter<User> userFormatter = new UserDataFormatter();
         String response = new String("+=============================" +
                 "=================+\nUsers: \n");
+
         for(User user : userList){
             response += userFormatter.formatUser(user);
         }
+
         response += "+============================================+";
         return response;
     }

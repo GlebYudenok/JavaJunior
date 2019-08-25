@@ -4,6 +4,7 @@ import by.gyudenok.dao.DAO;
 import by.gyudenok.domain.Role;
 import by.gyudenok.domain.User;
 import by.gyudenok.exception.DAOException;
+import by.gyudenok.exception.ValidatorExcepiton;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -141,14 +142,23 @@ public class FileUserDAO implements DAO<User> {
     }
 
     @Override
-    public void deleteById(int id) throws IOException {
+    public void deleteById(int id) throws IOException, ValidatorExcepiton {
+
         List<String> stringList = Files.readAllLines(Paths.get(filePath));
+        int j = -1;
         for(int i = 0; i < stringList.size(); i++){
             List<String> l = Arrays.asList(
                     stringList.get(i).split(" "));
             if(Integer.valueOf(l.get(0)) == id){
-                stringList.remove(i);
+                j = i;
+                break;
             }
+        }
+
+        if (j != -1) {
+            stringList.remove(j);
+        } else {
+            throw new ValidatorExcepiton();
         }
 
         fr = new FileWriter(file);
